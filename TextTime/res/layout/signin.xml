@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/enter_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/country_code"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/enter_code"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/callme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/resend_code"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:gravity="center_vertical"
+        android:text="@string/callme" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/validation_code" />
+
+    <TextView
+        android:id="@+id/country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/phone_number"
+        android:padding="10dp"
+        android:text="+367"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/country_code"
+        android:layout_alignBottom="@+id/country_code"
+        android:layout_centerHorizontal="true"
+        android:text="7182150777"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/resend_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_code"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        android:gravity="center_vertical"
+        android:text="@string/resend_code" />
+
+</RelativeLayout>

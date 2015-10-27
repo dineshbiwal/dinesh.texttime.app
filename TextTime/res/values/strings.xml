@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TextTime</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="welcome">Welcome to TextTime App</string>
+	<string name="welcome_back">Welcome back</string>
+	<string name="wel_come">Welcome</string>
+	<string name="countrycode">Choose your country</string>
+	<string name="enter_phone_number">Enter your phone number</string>
+	<string name="phonenumber">Phone Number</string>
+	<string name="phonenumber_error">Enter phone number in correct format</string>
+	<string name="send_verify_code">Send SMS with verify code</string>
+	<string name="select_country">Select Country/Region</string>
+	<string name="signin">Sign In</string>
+	<string name="validation_code">Validation code was sendon this number</string>
+	<string name="enter_code">Enter code:</string>
+	<string name="resend_code">Resend SMS-code</string>
+	<string name="callme">Call me</string>
+	<string name="profilename">Enter profile name</string>
+	<string name="password">Password</string>
+	<string name="password_error">Password length must be at least 6 characters long</string>
+	<string name="done">Done</string>
+	<string name="next">Next</string>
+	<string name="account_state_offline">offline</string>
+	<string name="account_state_waiting">waiting</string>
+	<string name="account_state_connecting">connecting</string>
+	<string name="account_state_registration">registration</string>
+	<string name="account_state_authentication">authentication</string>
+	<string name="account_state_connected">connected</string>
+	<string name="verification">Verification</string>
+	<string name="verification_success">Verification successfully</string>
+	<string name="verification_error">Verifiaction code do not match</string>
+	<string name="okey">OK</string>
+	<string name="profile">Profile</string>
+	<string name="profile_success">Profile created successfully</string>
+	<string name="profile_error">Profile not Created! Connection Error</string>
+	<string name="parsing">Parsing Error</string>
+	<string name="parsing_error">Data Parsing Error</string>
+	<string name="connection">Connection</string>
+	<string name="connection_error">Connection not found</string>
+	<string name="user">User</string>
+	<string name="user_error">This number already register!</string>
+	<string name="create_profile">Create account.... </string>
+	<string name="profile_create">Profile created successfully</string>
+	<string name="not">Not</string>
+	<string name="status_error">User is not active</string>
+	<string name="username_error">User already exist! Please Login.</string>
+	<string name="input_user_err">Username not valid! Enter in correct format.</string>
+	<string name="country">Country</string>
+	<string name="country_err">Please select your country first!</string>
+</resources>
