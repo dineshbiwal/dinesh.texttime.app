@@ -48,20 +48,35 @@ public class DataParsing {
         }
   	  return json;
 	}
-	public boolean checkStatus(String result)
+	public String checkStatusCode(String result)
     {
     	try{
     		JSONObject jObject=new JSONObject(result);
-        String ch = jObject.getString("status");
-        if(ch.equalsIgnoreCase("true"))
-            return true;
-        else
-        	return false;
+        int ch = Integer.parseInt(jObject.getString("statusCode"));
+        if(ch>=200 && ch<300)
+            return "success";
+        else if(ch>=400 && ch<500)
+        	return "request_err";
+        else if(ch>=500)
+        	return "server_err";
+        else if(jObject.getString("err").equalsIgnoreCase("true"))
+        	return "api_err";
     	}
-    	  catch(JSONException e)
-          {
-                  Log.e("log_tag", "Error parsing data "+e.toString());
-          }
-          return false;
+    	catch(JSONException e)
+         {
+            Log.e("log_tag", "Error parsing data "+e.toString());
+         }
+        return "unknow_err";
     }
+	public String getResult(String res)
+	{
+		try{
+			JSONObject jobj = new JSONObject(res);
+			return jobj.getString("r");
+		}catch(JSONException e)
+		{
+			Log.e("log_tag","Error parsing data "+e.toString());
+		}
+		return "parsing_error";
+	}
 }

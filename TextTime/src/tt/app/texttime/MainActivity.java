@@ -35,11 +35,28 @@ import android.widget.TextView;
 	AlertDialogManager alert = new AlertDialogManager();
 	CountryInfo ci = new CountryInfo();
 	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		String countrydata[] = new CountryInfo().getCountry(getBaseContext());
+		//Log.d("countrydata.length", String.valueOf(countrydata.length));
+		if(countrydata != null)
+		{
+			new DataFunctions().setCountry(countrydata);
+		}
+		String userdata[] = new UserInfo().getUserDetail(getBaseContext());
+		//Log.d("userdata.length", String.valueOf(userdata.length));
+		if(userdata != null){
+			if(userdata[8].equalsIgnoreCase("active"))
+			{
+				new DataFunctions().setUser(userdata);
+				Intent intx = new Intent(this,Welcome.class);
+				startActivity(intx);
+			}
+		}
 		countrycode = (TextView) findViewById(R.id.your_country);
 		phonenumber = (EditText) findViewById(R.id.phonenumber);
 		verifycode = (Button) findViewById(R.id.send_verify_code);

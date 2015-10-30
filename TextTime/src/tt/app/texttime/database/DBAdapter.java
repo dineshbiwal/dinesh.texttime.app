@@ -44,16 +44,31 @@ public class DBAdapter
 		public long insertCountryDetail(String dialcode,String countryname,String isoalpha2,String isoalpha3)
     	{
 			Cursor cursor=db.query(TAB_COUNTRY, null, null, null,null , null, null);
-		    if(cursor.getCount()<1) 
+		    if(cursor.getCount()>1) 
 	        { db.delete(TAB_COUNTRY, null, null) ; }
 			ContentValues newValues = new ContentValues();
 			newValues.put("DIAL_CODE",dialcode);
 			newValues.put("COUNTRY_NAME", countryname);
 			newValues.put("ISO_ALPHA_2",isoalpha2);
 			newValues.put("ISO_ALPHA_3",isoalpha3);
-		//	newValues.put("USERID",userid);
 			return db.insert(TAB_COUNTRY, null, newValues);
 			
+		}
+		public String[] getCountryDetail()
+		{
+			Cursor cursor=db.query(TAB_COUNTRY, null, null, null, null , null, null);
+		    if(cursor.getCount()<1) 
+	        {   
+	        	cursor.close();
+	        	return null;
+	        }
+		    String[] countryinfo = new String[cursor.getColumnCount()];
+	        cursor.moveToFirst();
+	        for(int i = 0; i<cursor.getColumnCount(); i++){
+	        	countryinfo[i] = cursor.getString(i);
+	        }
+			cursor.close();
+			return countryinfo;
 		}
 		public long insertUserDetail(String cid,String dialcode, String mobilenumber, String username, String accesstoken, String userimage, String displayname, String status)
 		{
@@ -125,9 +140,9 @@ public class DBAdapter
 	   
 	        return numberOFEntriesDeleted;
 		}	
-		public String[] getUser(String userid)
+		public String[] getUser()
 		{   
-			Cursor cursor=db.query(TAB_USER, null, " USER_ID= '"+userid+"' ", null,null , null, null);
+			Cursor cursor=db.query(TAB_USER, null, null, null,null , null, null);
 		    if(cursor.getCount()<1) 
 	        {   
 	        	cursor.close();
@@ -138,17 +153,6 @@ public class DBAdapter
 	        for(int i = 0; i<cursor.getColumnCount(); i++){
 	        	userinfo[i] = cursor.getString(i);
 	        }
-		/*	userinfo[0] = cursor.getString(cursor.getColumnIndex("USERID"));
-			userinfo[1] = cursor.getString(cursor.getColumnIndex("CID"));
-			userinfo[2] = cursor.getString(cursor.getColumnIndex("COUNTRY_CODE"));
-			userinfo[3] = cursor.getString(cursor.getColumnIndex("MOBILE_NUMBER"));
-			userinfo[4] = cursor.getString(cursor.getColumnIndex("USER_NAME"));
-			userinfo[5] = cursor.getString(cursor.getColumnIndex("ACCESS_TOKEN"));
-			userinfo[6] = cursor.getString(cursor.getColumnIndex("USER_IMAGE"));
-			userinfo[7] = cursor.getString(cursor.getColumnIndex("DISPLAY_NAME"));
-			userinfo[8] = cursor.getString(cursor.getColumnIndex("STATUS"));
-			//Log.d("DATA",number.toString());
-			*/
 			cursor.close();
 			return userinfo;
 		}
@@ -171,7 +175,6 @@ public class DBAdapter
 			userinfo[6] = cursor.getString(cursor.getColumnIndex("USER_IMAGE"));
 			userinfo[7] = cursor.getString(cursor.getColumnIndex("DISPLAY_NAME"));
 			userinfo[8] = cursor.getString(cursor.getColumnIndex("STATUS"));
-			//Log.d("DATA",number.toString());
 			
 			cursor.close();
 			return userinfo;

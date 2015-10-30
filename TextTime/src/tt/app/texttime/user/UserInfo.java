@@ -79,7 +79,7 @@ public class UserInfo {
 	{
 		DBAdapter  db = new DBAdapter(context);
 		db.open();
-		long userid = db.insertUserDetail(UserInfo.countryid, UserInfo.dial_code, UserInfo.mobile_number, null,null, null, null, UserInfo.status);
+		long userid = db.insertUserDetail(UserInfo.countryid, UserInfo.dial_code, UserInfo.mobile_number, "","", "", "", "");
 		db.close();
 		this.setUserID(String.valueOf(userid));
 		if(UserInfo.userid.equals(""))
@@ -110,5 +110,14 @@ public class UserInfo {
 		db.updateUserCountry(UserProfile.access_token, UserInfo.countryid, UserInfo.dial_code);
 		db.close();
 		return true;
+	}
+	public String[] getUserDetail(Context context)
+	{
+		DBAdapter db = new DBAdapter(context);
+		db.open();
+		String[] userdata = db.getUser();
+		db.close();
+		return userdata;
+		
 	}
 }

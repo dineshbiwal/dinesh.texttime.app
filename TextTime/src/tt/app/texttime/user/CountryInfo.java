@@ -66,8 +66,16 @@ public class CountryInfo {
 		long cid = db.insertCountryDetail(CountryInfo.dial_code, CountryInfo.countryname, CountryInfo.ISO_Alpha_2, CountryInfo.ISO_Alpha_3);
 		db.close();
 		this.setCountryID(String.valueOf(cid));
-		if(CountryInfo.countryid.equals(""))
+		if(CountryInfo.countryid.equalsIgnoreCase(""))
 			return false;
 		return true;
+	}
+	public String[] getCountry(Context context)
+	{
+		DBAdapter db = new DBAdapter(context);
+		db.open();
+		String[] country = db.getCountryDetail();
+		db.close();
+		return country;
 	}
 }

@@ -56,6 +56,7 @@ public final class R {
         public static final int textView2=0x7f080017;
         public static final int username=0x7f08000e;
         public static final int welcome=0x7f080010;
+        public static final int welcome_user=0x7f080018;
         public static final int your_country=0x7f080004;
     }
     public static final class layout {

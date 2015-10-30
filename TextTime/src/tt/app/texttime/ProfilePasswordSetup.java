@@ -119,7 +119,7 @@ public class ProfilePasswordSetup extends Activity implements OnClickListener{
 					if(json.getString("message").equals("Profile created!"))
 					{
 						JSONObject data = json.getJSONObject("result");
-						profile = new UserProfile(data.getString("username"), null, data.getString("token"), data.getString("username"));
+						profile = new UserProfile(data.getString("username"), "", data.getString("token"), data.getString("username"));
 						if(profile.updateUser(getBaseContext())){
 							Intent i = new Intent(ProfilePasswordSetup.this, Welcome.class);
 							startActivity(i);

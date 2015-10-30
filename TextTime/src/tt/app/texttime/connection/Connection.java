@@ -13,6 +13,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import tt.app.texttime.user.Constant;
@@ -23,14 +26,15 @@ public class Connection {
 	InputStream is = null;
 	UserProfile user = new UserProfile();
 	
-	/* private boolean isNetworkAvailable(Context context){
+	 @SuppressWarnings("unused")
+	private boolean isNetworkAvailable(Context context){
 	    	boolean available = false;
-	    	ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    	ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    	NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 	    	if(networkInfo !=null && networkInfo.isAvailable())
 	    		available = true;
 	    	return available;
-	    }*/
+	    }
 	public InputStream getConnection(String url, String methods,ArrayList<NameValuePair> params)
     {
     	try{
@@ -96,7 +100,37 @@ public class Connection {
          {
              Log.e("log_tag", "Error in http connection "+e.toString());
          }
-    	 
     	 return is;
     }
+	public InputStream openConnection(String url, String methods)
+	{
+		 try
+         {
+    		 if(methods=="POST"){
+	             HttpClient httpclient = new DefaultHttpClient();
+	             HttpPost httppost = new HttpPost(Constant.CONNECTION_STRING+url);
+			     HttpResponse response = httpclient.execute(httppost); 
+	             HttpEntity entity = response.getEntity();
+	             is = entity.getContent();
+	
+	             Log.e("log_tag", "connection success ");
+    		 }
+    		 else
+    		 {
+    			 DefaultHttpClient httpClient = new DefaultHttpClient();
+                 HttpGet httpGet = new HttpGet(Constant.CONNECTION_STRING+url);
+                 httpGet.addHeader("PHP_AUTH_USER",user.getAccessToken());
+                 HttpResponse httpResponse = httpClient.execute(httpGet);
+                 HttpEntity httpEntity = httpResponse.getEntity();
+                 is = httpEntity.getContent();
+                 
+                 Log.e("log_tag", "connection success ");
+    		 }
+         }
+     catch(Exception e)
+         {
+             Log.e("log_tag", "Error in http connection "+e.toString());
+         }
+    	 return is;
+	}
 }
